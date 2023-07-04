@@ -2,7 +2,6 @@ var btn = document.querySelector("#btn");
 var itemlist = document.querySelector("#items");
 var itemall = document.querySelectorAll("#items li");
 
-
 // Apply function On Submit button
 btn.addEventListener("click", additem);
 
@@ -12,8 +11,8 @@ function additem(e) {
 
   //Get input Data
   var input = document.getElementById("item").value;
-  // For Description Box 
-  var desc=document.querySelector('#description').value;
+  // For Description Box
+  var desc = document.querySelector("#description").value;
   // create New list for input
   var li = document.createElement("li");
   if (input === "") alert("Add item for add");
@@ -37,6 +36,29 @@ function additem(e) {
     li.appendChild(edit);
     //  Add Edit Button list
     itemlist.appendChild(li);
+
+    // Add function on edit button
+    edit.addEventListener("click", editItem);
+
+    function editItem(e) {
+      var listItem = e.target.parentElement;
+      var itemTextElement = listItem.firstChild;
+      var descriptionTextElement = itemTextElement.nextSibling; // Assuming the description text is the next sibling
+
+      var itemText = itemTextElement.textContent;
+      var descriptionText = descriptionTextElement.textContent;
+
+      var newItemText = prompt("Edit the item:", itemText);
+      var newDescriptionText = prompt("Edit the description:", descriptionText);
+
+      if (newItemText !== null && newItemText !== "") {
+        itemTextElement.textContent = newItemText;
+      }
+
+      if (newDescriptionText !== null) {
+        descriptionTextElement.textContent = newDescriptionText;
+      }
+    }
   }
 }
 
@@ -81,8 +103,17 @@ for (var i = 0; i < itemall.length; i++) {
   edit.className = "btn btn-sm float-right edit";
   edit.appendChild(document.createTextNode("Edit"));
   itemall[i].appendChild(edit);
+
+  //Add Function on Edit Button
+  edit.addEventListener("click", edittext);
+
+  function edittext(e) {
+    var text = e.target.parentElement;
+    var textcont=text.firstChild.textContent;
+    var newtext=prompt('Enter New text:',textcont);
+
+    if (newtext !== null && newtext !== "") {
+      text.firstChild.textContent = newtext;
+    }
+  }
 }
-
-
-
-
