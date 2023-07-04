@@ -2,6 +2,7 @@ var btn = document.querySelector("#btn");
 var itemlist = document.querySelector("#items");
 var itemall = document.querySelectorAll("#items li");
 
+
 // Apply function On Submit button
 btn.addEventListener("click", additem);
 
@@ -11,11 +12,15 @@ function additem(e) {
 
   //Get input Data
   var input = document.getElementById("item").value;
+  // For Description Box 
+  var desc=document.querySelector('#description').value;
+  // create New list for input
   var li = document.createElement("li");
   if (input === "") alert("Add item for add");
   else {
     li.classList.add("list-group-item");
     li.appendChild(document.createTextNode(input)); // Append input into created element li
+    li.appendChild(document.createTextNode(desc)); // Append Description into created element li
 
     //Add Delete Button
     var delbtn = document.createElement("button");
@@ -77,3 +82,7 @@ for (var i = 0; i < itemall.length; i++) {
   edit.appendChild(document.createTextNode("Edit"));
   itemall[i].appendChild(edit);
 }
+
+
+
+
